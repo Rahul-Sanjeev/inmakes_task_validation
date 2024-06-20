@@ -1,0 +1,6 @@
+{
+    "git.ignoreLimitWarning": true,
+    "editor.inlineSuggest.suppressSuggestions": true,
+    "files.autoSave": "afterDelay",
+    "python.analysis.typeCheckingMode": "basic"
+}

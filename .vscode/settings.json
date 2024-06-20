@@ -1,0 +1,8 @@
+{
+    "python.analysis.autoImportCompletions": true,
+    "files.autoSave": "afterDelay",
+    "cSpell.words": [
+        "psycopg"
+    ],
+    "livePreview.defaultPreviewPath": "/practice/index.html"
+}
