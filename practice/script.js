@@ -1,57 +1,51 @@
-document.getElementById('taskForm').addEventListener('submit', function(event) {
-            // Prevent form submission
-            event.preventDefault();
-            
-            // Validate the form
-            if (validateForm()) {
-                alert('Form submitted successfully!');
-            }
+function valid() {
+    var formValid = true;
+    var errorMessages = []; // Array to collect error messages
+    
+    var firstName = document.getElementById('firstName');
+    if (!firstName.value.match(/^[A-Za-z]{1,30}$/)) {
+        formValid = false;
+        errorMessages.push('First name must be alphabetic and up to 30 characters long.');
+    }
+
+    var lastName = document.getElementById('lastName');
+    if (!lastName.value.match(/^[A-Za-z]{1,30}$/)) {
+        formValid = false;
+        errorMessages.push('Last name must be alphabetic and up to 30 characters long.');
+    }
+
+    var emailAddress = document.getElementById('email');
+    if (!emailAddress.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        formValid = false;
+        errorMessages.push('Enter a valid email address.');
+    }
+
+    var mobileNumber = document.getElementById('mobileNumber');
+    if (!mobileNumber.value.match(/^\d{10}$/)) {
+        formValid = false;
+        errorMessages.push('Mobile number must be a 10 digit number.');
+    }
+
+    var pinCode = document.getElementById('pinCode');
+    if (!pinCode.value.match(/^\d{6}$/)) {
+        formValid = false;
+        errorMessages.push('PIN code must be a 6 digit number.');
+    }
+
+    // Display error messages if any
+    if (!formValid) {
+        var errorMessageContainer = document.getElementById('error-messages');
+        errorMessageContainer.innerHTML = ''; // Clear previous error messages
+
+        errorMessages.forEach(function(message) {
+            var p = document.createElement('p');
+            p.textContent = message;
+            errorMessageContainer.appendChild(p);
         });
 
-        function validateForm() {
-            // First name validation
-            const firstName = document.getElementById('firstName').value;
-            if (!/^[A-Za-z]{1,30}$/.test(firstName)) {
-                alert('First name must be 1-30 characters long and contain only letters.');
-                return false;
-            }
+        // Prevent form submission
+        return false;
+    }
 
-            // Last name validation
-            const lastName = document.getElementById('lastName').value;
-            if (!/^[A-Za-z]{1,30}$/.test(lastName)) {
-                alert('Last name must be 1-30 characters long and contain only letters.');
-                return false;
-            }
-
-            // Mobile number validation
-            const mobile = document.getElementById('mobile').value;
-            if (!/^\d{10}$/.test(mobile)) {
-                alert('Mobile number must be a 10-digit number.');
-                return false;
-            }
-
-            // City validation
-            const city = document.getElementById('city').value;
-            if (!/^[A-Za-z]{1,30}$/.test(city)) {
-                alert('City must be 1-30 characters long and contain only letters.');
-                return false;
-            }
-
-            // PIN code validation
-            const pinCode = document.getElementById('pinCode').value;
-            if (!/^\d{6}$/.test(pinCode)) {
-                alert('PIN code must be a 6-digit number.');
-                return false;
-            }
-
-            // State validation
-            const state = document.getElementById('state').value;
-            if (!/^[A-Za-z]{1,30}$/.test(state)) {
-                alert('State must be 1-30 characters long and contain only letters.');
-                return false;
-            }
-
-            // Other validations are handled by the browser (e.g., required fields, email format)
-
-            return true;
-        }
+    return true; // Return the form validity status
+}

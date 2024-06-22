@@ -1,76 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
-    <title>Document</title>
+    <script src="script.js" defer></script>
+    <title>Php Coding Challenge</title>
 </head>
+
 <body>
-    <form id="taskForm">
-        <label for="firstName">FIRST NAME</label>
-        <input type="text" id="firstName" name="firstName" maxlength="30" required>
-    
-        <label for="lastName">LAST NAME</label>
-        <input type="text" id="lastName" name="lastName" maxlength="30" required>
-    
-        <label for="dob">DATE OF BIRTH</label>
-        <select id="day" name="day" required>
-            <option value="">Day</option>
-            ${Array.from({ length: 31 }, (_, i) => `<option value="${i + 1}">${i + 1}</option>`).join('')}
-        </select>
-        <select id="month" name="month" required>
-            <option value="">Month</option>
-            ${Array.from({ length: 12 }, (_, i) => `<option value="${i + 1}">${i + 1}</option>`).join('')}
-        </select>
-        <select id="year" name="year" required>
-            <option value="">Year</option>
-            ${Array.from({ length: new Date().getFullYear() - 1899 }, (_, i) => `<option value="${1900 + i}">${1900 + i}
-            </option>`).join('')}
-        </select>
-    
-        <label for="email">EMAIL ID</label>
-        <input type="email" id="email" name="email" required>
-    
-        <label for="mobile">MOBILE NUMBER</label>
-        <input type="text" id="mobile" name="mobile" required>
-    
-        <label>GENDER</label>
-        <input type="radio" id="male" name="gender" value="Male" required>
-        <label for="male" style="display: inline;">Male</label>
-        <input type="radio" id="female" name="gender" value="Female" required>
-        <label for="female" style="display: inline;">Female</label>
-    
-        <label for="address">ADDRESS</label>
-        <textarea id="address" name="address" rows="4" required></textarea>
-    
-        <label for="city">CITY</label>
-        <input type="text" id="city" name="city" maxlength="30" required>
-    
-        <label for="pinCode">PIN CODE</label>
-        <input type="text" id="pinCode" name="pinCode" required>
-    
-        <label for="state">STATE</label>
-        <input type="text" id="state" name="state" maxlength="30" required>
-    
-        <label for="country">COUNTRY</label>
-        <select id="country" name="country" required>
-            <option value="India">India</option>
-        </select>
-    
-        <label>COURSES APPLIED FOR</label>
-        <input type="radio" id="php" name="course" value="Php" required>
-        <label for="php" style="display: inline;">Php</label>
-        <input type="radio" id="python" name="course" value="Python" required>
-        <label for="python" style="display: inline;">Python</label>
-        <input type="radio" id="java" name="course" value="Java" required>
-        <label for="java" style="display: inline;">Java</label>
-        <input type="radio" id="digitalMarketing" name="course" value="Digital Marketing" required>
-        <label for="digitalMarketing" style="display: inline;">Digital Marketing</label>
-    
-        <input type="submit" value="Submit">
-        <input type="reset" value="Reset">
+    <form action="" onsubmit="return valid()">
+        <div class="form-group">
+            <label for="firstName">FIRST NAME</label>
+            <input type="text" id="firstName" name="firstName" maxlength="30" required>
+            <span>(max 30 characters and A-Z)</span>
+        </div>
+
+        <div class="form-group">
+            <label for="lastName">LAST NAME</label>
+            <input type="text" id="lastName" name="lastName" maxlength="30" required>
+            <span>(max 30 characters and A-Z)</span>
+        </div>
+
+        <div class="form-group">
+            <label>DATE OF BIRTH</label>
+            <select id="dobDay" name="dobDay" required>
+                <option value="date">Day</option>
+            </select>
+            <select id="dobMonth" name="dobMonth" required>
+                <option value="month">Month</option>
+            </select>
+            <select id="dobYear" name="dobYear" required>
+                <option value="year">Year</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="email">EMAIL ID</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="mobileNumber">MOBILE NUMBER</label>
+            <input type="text" id="mobileNumber" name="mobileNumber" pattern="\d{10}" required>
+            <span>(10 digit number)</span>
+        </div>
+
+        <div class="form-group">
+            <label>GENDER</label>
+
+            <label for="male">Male
+                <input type="radio" id="male" name="gender" value="male" required>
+            </label>
+
+            <label for="female">Female
+                <input type="radio" id="female" name="gender" value="female" required>
+            </label>
+        </div>
+
+        <div class="form-group">
+            <label for="address">ADDRESS</label>
+            <textarea id="address" name="address" required></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="city">CITY</label>
+            <input type="text" id="city" name="city" maxlength="30" required>
+            <span>(max 30 characters a-z and A-Z)</span>
+        </div>
+
+        <div class="form-group">
+            <label for="pinCode">PIN CODE</label>
+            <input type="text" id="pinCode" name="pinCode" pattern="\d{6}" required>
+            <span>(6 digit number)</span>
+        </div>
+
+        <div class="form-group">
+            <label for="state">STATE</label>
+            <input type="text" id="state" name="state" maxlength="30" required>
+            <span>(max 30 characters a-z and A-Z)</span>
+        </div>
+
+        <div class="form-group">
+            <label for="country">COUNTRY</label>
+            <select id="country" name="country" required>
+                <option value="India">India</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>COURSES APPLIED FOR</label>
+
+            <label for="php">Php
+                <input type="radio" id="php" name="course" value="Php" required>
+            </label>
+
+            <label for="python">Python
+                <input type="radio" id="python" name="course" value="Python" required>
+            </label>
+
+            <label for="java">Java
+                <input type="radio" id="java" name="course" value="Java" required>
+            </label>
+
+            <label for="digitalMarketing">Digital Marketing
+                <input type="radio" id="digitalMarketing" name="course" value="Digital Marketing" required>
+            </label>
+        </div>
+
+        <div class="form-group buttons">
+            <button type="submit">Submit</button>
+            <button type="reset">Reset</button>
+        </div>
+        <div id="error-messages"></div>
     </form>
+
 </body>
+
 </html>
